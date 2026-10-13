@@ -1,0 +1,27 @@
+# Dependencies and generated build output (the application is in leetcode/).
+node_modules/
+leetcode/node_modules/
+leetcode/dist/
+leetcode/dist-ssr/
+
+# Local environment and secrets. Keep the checked-in template.
+.env
+.env.*
+!.env.example
+leetcode/.env
+leetcode/.env.*
+!leetcode/.env.example
+
+# Logs and local package-manager output.
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Local editor and operating-system state.
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
