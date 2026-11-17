@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "leetcode/**"
+      - ".nvmrc"
+      - ".github/workflows/firebase-hosting-merge.yml"
   workflow_dispatch:
 
 permissions:
