@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="title desc">
+  <title id="title">CodeTracker user workflow</title>
+  <desc id="desc">Flow from landing page to signup or login, Firebase Authentication, dashboard question query, and sign out.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#4f46e5"/></linearGradient>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 9 3 0 6Z" fill="#64748b"/></marker>
+    <style>.box{fill:#fff;stroke:#93c5fd;stroke-width:2}.head{font:700 26px Inter,Arial,sans-serif;fill:#0f172a}.label{font:600 18px Inter,Arial,sans-serif;fill:#0f172a}.sub{font:15px Inter,Arial,sans-serif;fill:#475569}.arrow{stroke:#64748b;stroke-width:3;fill:none;marker-end:url(#a)}</style>
+  </defs>
+  <rect width="1200" height="440" rx="26" fill="#f8fafc"/>
+  <text x="55" y="58" class="head">Current user journey</text>
+  <g>
+    <rect x="55" y="145" width="160" height="110" rx="16" class="box"/>
+    <text x="135" y="188" class="label" text-anchor="middle">Landing</text><text x="135" y="217" class="sub" text-anchor="middle">Public page</text>
+    <rect x="285" y="80" width="160" height="95" rx="16" class="box"/>
+    <text x="365" y="120" class="label" text-anchor="middle">Signup</text><text x="365" y="147" class="sub" text-anchor="middle">Email + password</text>
+    <rect x="285" y="225" width="160" height="95" rx="16" class="box"/>
+    <text x="365" y="265" class="label" text-anchor="middle">Login</text><text x="365" y="292" class="sub" text-anchor="middle">Email + password</text>
+    <rect x="520" y="145" width="175" height="110" rx="16" fill="url(#g)"/>
+    <text x="607" y="188" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700" text-anchor="middle">Firebase Auth</text>
+    <text x="607" y="217" fill="#dbeafe" font-family="Inter,Arial,sans-serif" font-size="15" text-anchor="middle">User identity</text>
+    <rect x="770" y="145" width="160" height="110" rx="16" class="box"/>
+    <text x="850" y="188" class="label" text-anchor="middle">Dashboard</text><text x="850" y="217" class="sub" text-anchor="middle">Authenticated view</text>
+    <rect x="1000" y="145" width="160" height="110" rx="16" class="box"/>
+    <text x="1080" y="188" class="label" text-anchor="middle">Questions</text><text x="1080" y="217" class="sub" text-anchor="middle">Firestore read</text>
+  </g>
+  <path d="M215 180h60l10-54" class="arrow"/>
+  <path d="M215 210h60l10 62" class="arrow"/>
+  <path d="M445 128h35l40 50" class="arrow"/>
+  <path d="M445 272h35l40-50" class="arrow"/>
+  <path d="M695 200h75" class="arrow"/>
+  <path d="M930 200h70" class="arrow"/>
+  <text x="607" y="350" class="sub" text-anchor="middle">After reviewing records, the user can sign out from the dashboard.</text>
+  <text x="607" y="382" class="sub" text-anchor="middle">Question creation and editing are not part of the current checked-in frontend.</text>
+</svg>
