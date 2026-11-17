@@ -16,7 +16,10 @@ MARKDOWN_FILES = [
     ROOT / "SUPPORT.md",
     *sorted((ROOT / "docs").rglob("*.md")),
 ]
-LINK_RE = re.compile(r"!?[[^]]*\]\((?:<([^>]+)>|([^\s)]+))(?:\s+[^)]*)?\)")
+LINK_RE = re.compile(
+    r"!?" + re.escape("[") + r".*?" + re.escape("]") + re.escape("(")
+    + r"(?:<([^>]+)>|([^\s)]+))(?:\s+[^)]*)?" + re.escape(")")
+)
 REFERENCE_RE = re.compile(r"^\s*\[[^\]]+\]:\s*(?:<([^>]+)>|(\S+))", re.MULTILINE)
 
 
