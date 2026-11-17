@@ -1,44 +1,149 @@
 # 📚 CodeTracker Documentation Hub
 
-Welcome to the technical and product documentation for **CodeTracker**. This folder describes the implementation that is actually present in this repository: a React single-page frontend built with Vite, Firebase Authentication, and a browser-side Cloud Firestore read path.
+This directory is the technical reference for the actual CodeTracker repository. It covers the React single-page app nested in leetcode/, Firebase Authentication, the Firestore question read path, Firebase Hosting, GitHub automation, and project governance.
 
-> **Documentation rule:** A documented capability is not automatically an implemented capability. Where a behavior is proposed, externally configured, or absent from the repository, the document labels it accordingly.
+> **Accuracy rule:** A documented capability is not automatically implemented. Proposed work, external provider configuration, and known gaps are labelled explicitly. No backend API, relational schema, production metric, compliance result, or screenshot is invented.
 
 ## 🧭 Start here
 
-| Need | Read |
+| Goal | Recommended reading |
 | --- | --- |
-| Understand the product and its boundaries | [Product overview](product-overview.md), [project objectives](project-objectives.md), [scope and limitations](scope-and-limitations.md) |
-| Understand the current frontend architecture | [Architecture](architecture.md), [system design](system-design.md), [application lifecycle](application-lifecycle.md) |
-| Install and run locally | [Installation](installation.md), [development](development.md), [configuration](configuration.md) |
-| Understand Firebase and records | [Application API](api.md), [database](database.md), [data dictionary](data-dictionary.md), [data flow](data-flow.md) |
-| Review security and privacy boundaries | [Security architecture](security-architecture.md), [threat model](threat-model.md), [privacy](privacy.md) |
-| Improve UI quality | [UI/UX guidelines](ui-ux-guidelines.md), [accessibility](accessibility.md), [responsive design](responsive-design.md) |
-| Test, build, and deploy | [Testing strategy](testing-strategy.md), [CI/CD](ci-cd.md), [deployment](deployment.md) |
-| Diagnose a problem | [Troubleshooting](troubleshooting.md), [FAQ](faq.md), [known issues](known-issues.md) |
-| Propose or review a change | [Contributing](../CONTRIBUTING.md), [templates](templates/README.md), [decision log](decision-log.md) |
+| Understand the product | [Product overview](product-overview.md), [features](features.md), [scope](scope-and-limitations.md) |
+| Set up development | [Installation](installation.md), [development](development.md), [configuration](configuration.md) |
+| Understand architecture | [Architecture](architecture.md), [system design](system-design.md), [UML diagrams](uml-diagrams.md) |
+| Understand data | [Application routes and Firebase operations](api.md), [database](database.md), [data dictionary](data-dictionary.md), [data flow](data-flow.md) |
+| Improve the interface | [UI/UX guidelines](ui-ux-guidelines.md), [design system](design-system.md), [page documentation](page-documentation.md) |
+| Review security | [Security architecture](security-architecture.md), [threat model](threat-model.md), [security risk register](security-risk-register.md) |
+| Test and deploy | [Testing strategy](testing-strategy.md), [quality gates](quality-gates.md), [CI/CD](ci-cd.md), [deployment](deployment.md) |
+| Operate and maintain | [Operations](operations.md), [incident response](incident-response.md), [maintenance](maintenance.md) |
+| Create project artifacts | [Templates](templates/README.md), [decision log](decision-log.md) |
 
-## 🗂️ Documentation map
+## 🗂️ Full documentation catalogue
 
-- Product and requirements: product overview, background, objectives, problem statement, solution overview, feature inventory, requirements, personas, journeys, use cases, scope, glossary.
-- Engineering: architecture, system design, lifecycle, component architecture, module boundaries, dependencies, technology stack, configuration, coding standards, error handling, performance, compatibility.
-- Data and integration: application routes, Firebase operations, current Firestore document shape, data dictionary, data validation, external services, and data-flow boundaries.
-- Quality: test strategy, QA, test plan, manual test cases, defect reporting, accessibility, security, and documentation validation.
-- Operations: local setup, CI, Firebase Hosting, release checks, rollback guidance, monitoring boundaries, maintenance, known issues, and risk registers.
-- Reusable artifacts: architecture decisions, feature specifications, QA cases, threat assessments, audit reports, incident reports, deployment plans, and release checklists in templates/.
+### 📦 Product and requirements
+- [Product overview](product-overview.md)
+- [Project background](project-background.md)
+- [Project objectives](project-objectives.md)
+- [Problem statement](problem-statement.md)
+- [Solution overview](solution-overview.md)
+- [Feature inventory](features.md)
+- [Functional requirements](functional-requirements.md)
+- [Non-functional requirements](non-functional-requirements.md)
+- [User personas](user-personas.md)
+- [User journeys](user-journeys.md)
+- [Use cases](use-cases.md)
+- [Scope and limitations](scope-and-limitations.md)
+- [Glossary](glossary.md)
+- [FAQ](faq.md)
+- [Roadmap](../ROADMAP.md)
+- [Project status](project-status.md)
 
-## 🧱 Applicability and truthfulness
+### 🏗️ Architecture and technical design
+- [Architecture](architecture.md)
+- [System design](system-design.md)
+- [Application lifecycle](application-lifecycle.md)
+- [Component architecture](component-architecture.md)
+- [Module documentation](module-documentation.md)
+- [Technology stack](technology-stack.md)
+- [Project structure](project-structure.md)
+- [UML and engineering diagrams](uml-diagrams.md)
+- [Navigation structure](navigation-structure.md)
+- [Page documentation](page-documentation.md)
+- [Configuration](configuration.md)
+- [Environment variables](environment-variables.md)
+- [Integrations](integrations.md)
+- [External dependencies](external-dependencies.md)
+- [Error handling](error-handling.md)
+- [Performance](performance.md)
+- [Compatibility](compatibility.md)
+- [Decision log](decision-log.md)
+- [Technical debt](technical-debt.md)
 
-The project is currently a frontend-only repository with direct Firebase client SDK access. It does not contain a server API, a relational database, Firestore Security Rules, Firebase Emulator configuration, server-side authorization code, or the source of the separately published browser extension. Therefore:
+### 🗃️ Data and privacy
+- [Application routes and data API](api.md)
+- [Database and Firebase](database.md)
+- [Data dictionary](data-dictionary.md)
+- [Data flow](data-flow.md)
+- [Data validation](data-validation.md)
+- [Privacy](privacy.md)
+- [Data retention](data-retention.md)
+- [Backup and restore](backup-and-restore.md)
 
-- API documentation describes browser routes and Firebase SDK operations, not fictitious REST endpoints.
-- Data documentation describes the observed Firestore questions collection and labels the shape as source-derived, not a formally enforced schema.
-- Security documents distinguish frontend safeguards from provider-enforced Firestore rules.
-- Deployment documentation distinguishes configured Firebase Hosting from a deployment that has actually been verified.
-- Accessibility and performance guides define review targets; they do not claim conformance or benchmark results.
+### 🎨 UI/UX and accessibility
+- [UI/UX guidelines](ui-ux-guidelines.md)
+- [Design system](design-system.md)
+- [Color system](color-system.md)
+- [Typography](typography.md)
+- [Responsive design](responsive-design.md)
+- [Animation guidelines](animation-guidelines.md)
+- [Accessibility](accessibility.md)
+- [Keyboard navigation](keyboard-navigation.md)
+- [Accessibility testing](accessibility-testing.md)
 
-## 🔄 Maintenance
+### 🔐 Security
+- [Security architecture](security-architecture.md)
+- [Threat model](threat-model.md)
+- [Security best practices](security-best-practices.md)
+- [Security risk register](security-risk-register.md)
+- [Incident response](incident-response.md)
+- [Security policy](../SECURITY.md)
 
-Update the relevant document in the same change that updates routes, Firebase calls, environment variables, data fields, workflow behavior, or deployment configuration. Verify internal links with scripts/validate-links.py and review Mermaid diagrams after architecture changes.
+### 🧪 Testing and quality
+- [Testing strategy](testing-strategy.md)
+- [QA guide](qa.md)
+- [Test plan](test-plan.md)
+- [Quality gates](quality-gates.md)
+- [Known issues](known-issues.md)
+- [Troubleshooting](troubleshooting.md)
+
+### 🚀 Delivery and operations
+- [Installation](installation.md)
+- [Getting started and development](development.md)
+- [Deployment](deployment.md)
+- [CI/CD](ci-cd.md)
+- [GitHub Actions](github-actions.md)
+- [Release management](release-management.md)
+- [Versioning](versioning.md)
+- [Rollback](rollback.md)
+- [Monitoring](monitoring.md)
+- [Operations](operations.md)
+- [Maintenance](maintenance.md)
+
+### 🧰 Reusable templates
+See the [template index](templates/README.md) for architecture decisions, feature specs, API and data schema changes, testing, threat assessments, security and accessibility audits, incident reports, releases, deployment, rollback, migrations, risk reviews, change requests, code reviews, status reports, meeting notes, and maintenance.
+
+## 🖼️ Visual assets
+
+Original, repository-specific SVGs are stored in assets/:
+- [Logo](assets/logo.svg)
+- [Project banner](assets/project-banner.svg)
+- [Architecture overview](assets/architecture-overview.svg)
+- [User workflow](assets/workflow-diagram.svg)
+- [Data flow](assets/data-flow.svg)
+- [Deployment flow](assets/deployment-flow.svg)
+- [Security architecture](assets/security-architecture.svg)
+
+The screenshots directory is reserved for genuine UI captures. Do not add mockups or generated screenshots as evidence of an implemented application screen.
+
+## 🧱 Project boundaries
+
+The checked-in app is a frontend-only React/Vite application. It has Firebase Authentication and a Firestore read query for existing question records. It does not include a server API, relational database, Firestore Security Rules, Firebase Emulator configuration, or source code for the external Edge extension.
+
+- Browser route documentation describes routes, not fictitious REST endpoints.
+- The data dictionary is inferred from the current component's field access.
+- The UID query is not an authorization boundary.
+- Security guides require real Firebase Rules review and testing.
+- Accessibility and performance guides state targets, not audited results.
+- Deployment guides describe workflow configuration and require actual run evidence before a successful deployment can be claimed.
+
+## 🔄 Documentation maintenance
+
+Update source, docs, diagrams, templates, and tests together when behavior changes. Run the root-level validators:
+
+~~~sh
+python scripts/validate-docs.py
+python scripts/validate-links.py
+python scripts/check-project-structure.py
+~~~
 
 Last reviewed: 2026-11-18
