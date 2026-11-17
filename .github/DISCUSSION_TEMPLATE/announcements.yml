@@ -1,0 +1,20 @@
+title: "📣 Announcement: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Maintainer-facing announcement template. Include only confirmed dates, changes, and repository links.
+  - type: textarea
+    id: announcement
+    attributes:
+      label: Announcement
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: User or contributor impact
+  - type: input
+    id: references
+    attributes:
+      label: Related release, issue, or documentation link
