@@ -1,33 +1,38 @@
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../config/firebase";
 import AllQuestions from "./AllQuestions";
 
 const Dashboard = ({ user }) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const signOutUser = async () => {
     try {
       await signOut(auth);
       navigate("/");
     } catch (error) {
-      console.log(error.message);
+      console.error("Unable to sign out:", error.code || "unknown-error");
     }
   };
 
   return (
     <>
       <nav className="bg-gradient-to-r from-blue-500 to-indigo-500 shadow-lg">
-        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-          <div className="relative flex items-center justify-between h-16">
+        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="relative flex h-16 items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
               <button
-                className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-indigo-200 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                type="button"
+                className="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-indigo-700 hover:text-indigo-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 aria-controls="mobile-menu"
-                aria-expanded="false"
+                aria-expanded={isMobileMenuOpen}
+                aria-label={isMobileMenuOpen ? "Close main menu" : "Open main menu"}
+                onClick={() => setIsMobileMenuOpen((open) => !open)}
               >
-                <span className="sr-only">Open main menu</span>
                 <svg
-                  className="block h-6 w-6"
+                  className={isMobileMenuOpen ? "hidden h-6 w-6" : "block h-6 w-6"}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -42,7 +47,7 @@ const Dashboard = ({ user }) => {
                   />
                 </svg>
                 <svg
-                  className="hidden h-6 w-6"
+                  className={isMobileMenuOpen ? "block h-6 w-6" : "hidden h-6 w-6"}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -58,36 +63,36 @@ const Dashboard = ({ user }) => {
                 </svg>
               </button>
             </div>
-            <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+
+            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex-shrink-0">
-                <span className="font-bold text-2xl text-white">
-                  <span className="inline-block h-3 w-3 bg-white mr-2 rounded-full"></span>
+                <span className="text-2xl font-bold text-white">
+                  <span className="mr-2 inline-block h-3 w-3 rounded-full bg-white" />
                   CodeTracker
                 </span>
               </div>
-              <div className="hidden sm:block sm:ml-6">
+              <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
-                  <Link
-                    to="#"
-                    className="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600"
-                  >
+                  <span className="rounded-md px-3 py-2 text-sm font-medium text-white">
                     All your questions in one page
-                  </Link>
+                  </span>
                   <a
                     href="https://resource-tracker.netlify.app/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600"
+                    className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-indigo-600"
                   >
-                    Other Resources
+                    Other resources
                   </a>
                 </div>
               </div>
             </div>
+
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <button
+                type="button"
                 onClick={signOutUser}
-                className="font-medium text-white bg-indigo-600 hover:bg-indigo-700 px-3 py-2 rounded-md"
+                className="rounded-md bg-indigo-600 px-3 py-2 font-medium text-white hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 Sign out
               </button>
@@ -95,43 +100,44 @@ const Dashboard = ({ user }) => {
           </div>
         </div>
 
-        <div className="sm:hidden" id="mobile-menu">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            <Link
-              to="#"
-              className="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-indigo-600"
-            >
+        <div
+          className={isMobileMenuOpen ? "block sm:hidden" : "hidden sm:hidden"}
+          id="mobile-menu"
+        >
+          <div className="space-y-1 px-2 pb-3 pt-2">
+            <span className="block rounded-md px-3 py-2 text-base font-medium text-white">
               CodeTracker
-            </Link>
+            </span>
             <a
               href="https://resource-tracker.netlify.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-indigo-600"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-indigo-600"
             >
-              Interview Prep Resources
+              Interview prep resources
             </a>
           </div>
         </div>
       </nav>
 
-      <div className="py-10">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+      <main className="py-10">
+        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <section className="overflow-hidden bg-white shadow sm:rounded-lg" aria-labelledby="dashboard-title">
             <div className="px-4 py-5 sm:px-6">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
+              <h1 id="dashboard-title" className="text-lg font-medium leading-6 text-gray-900">
                 Welcome, {user?.displayName || "User"}!
-              </h3>
+              </h1>
               <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                Here are your questions:
+                Here are the coding questions associated with your account.
               </p>
             </div>
             <div className="border-t border-gray-200">
               <AllQuestions user={user} />
             </div>
-          </div>
+          </section>
         </div>
-      </div>
+      </main>
     </>
   );
 };
