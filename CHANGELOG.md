@@ -1,13 +1,24 @@
 # Changelog
 
-Changes that affect users or contributors are recorded here. This project has not published versioned releases; dates below describe repository changes, not a formal release.
-
-## 2026-10-13
-
-- Added repository-level project documentation, contribution and security policies, support guidance, roadmap, citation metadata, and editor/environment templates.
-- Documented the existing React/Vite and Firebase implementation, Firestore question shape, setup instructions, and current Hosting workflow configuration.
-- Added root ignore rules for generated files and local environment configuration.
+Notable repository changes are recorded here. Entries describe repository history and
+verified source behavior, not proposed roadmap items.
 
 ## Unreleased
 
-Track application changes here after they are merged. Include user-visible changes, fixes, security updates, and noteworthy migration steps; omit routine formatting-only changes.
+### Documentation and repository quality
+- Expanded product, engineering, architecture, security, quality, operations,
+  accessibility, and maintenance documentation.
+- Added architecture/UML diagrams and an original SVG architecture illustration.
+- Added reusable issue, ADR, test, security, incident, release, deployment, and review templates.
+- Added tracked-tree snapshot and repository validation script.
+- Added repository enhancement traceability audit.
+
+### Governance
+- Standardized the root license filename as LICENSE with an MIT grant for original
+  CodeTracker work authored by Brajesh Kumar.
+- Added authorship and maintainer records and clarified third-party license boundaries.
+
+### Verified implementation follow-ups
+- Firebase Hosting workflows need correct nested working-directory/install steps.
+- Firestore Security Rules and automated rules tests are not present in this repository.
+- The dashboard currently reads records only and does not include question CRUD UI.
