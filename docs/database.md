@@ -1,26 +1,32 @@
-# Database and Firebase Data
+# 🗃️ Database and Firebase Data
 
 ## Firebase services in the app
 
-The client initializes Firebase Authentication, Cloud Firestore, and Firebase Storage in leetcode/src/config/firebase.jsx. The visible routes use Authentication and Firestore. No Firestore rules, database migration, server API, or emulator configuration is present in this repository.
+The client initializes Firebase Authentication, Cloud Firestore, and Firebase Storage in leetcode/src/config/firebase.jsx. The visible routes use Authentication and Firestore. No Firestore Rules file, database migration, server API, or emulator configuration is present in this repository.
 
 ## Collection currently read
 
 leetcode/src/components/AllQuestions.jsx reads the questions collection and applies a uid equality filter. Each rendered document is expected to contain:
 
-- uid: Firebase Authentication UID associated with the record.
-- title: question name.
-- difficulty: difficulty label.
-- email: email displayed in the table.
-- link: link opened from the row.
-- time: a value accepted by JavaScript Date.
-- topics: an array of topic labels.
+| Field | Current use | Expected shape | Review note |
+| --- | --- | --- | --- |
+| uid | Query filter | Firebase UID string | Rules must enforce ownership |
+| title | Question title | String | Render as plain text |
+| difficulty | Difficulty label | String | Define accepted values before adding filters |
+| email | Displayed in table | String | Personal data; confirm it is needed |
+| link | External question URL | URL string | Validate scheme and destination |
+| time | Date display | Date-compatible value | Define a canonical timestamp format |
+| topics | Topic display | Array of strings | Current UI calls join directly |
 
 The code shown here does not write question documents. The separate browser extension may populate the collection, but its implementation and schema validation are not included. Confirm its data contract before changing fields.
 
+See [Data Dictionary](data-dictionary.md) and [Data Validation](data-validation.md) for the current source-derived shape and proposed normalization rules.
+
 ## Security and ownership
 
-A query filter is not an access-control mechanism. Configure Cloud Firestore Security Rules so unauthenticated requests are rejected and each user can only access documents they are authorized to access. Ensure write rules (including any future extension or backend writes) validate both the authenticated owner and submitted document shape. Review rules for reads, creates, updates, deletes, and queries; test them with the Firebase Emulator before release.
+A query filter is not an access-control mechanism. Configure Cloud Firestore Security Rules so unauthenticated requests are rejected and each user can only access documents they are authorized to access. Ensure write rules, including any future extension or backend writes, validate both the authenticated owner and submitted document shape.
+
+Review Rules for reads, creates, updates, deletes, and queries. Test them with the Firebase Emulator before release. This repository currently has no Rules file or emulator test setup, so a complete security review requires access to the Firebase project configuration.
 
 Do not use broad rules such as allowing all reads or writes. Do not treat Firebase web app configuration as authorization. Firebase server/Admin SDKs have different trust characteristics from browser clients; privileged server credentials must never be bundled into this Vite application.
 
