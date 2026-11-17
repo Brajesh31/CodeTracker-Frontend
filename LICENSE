@@ -3,11 +3,11 @@ MIT License
 Copyright (c) 2026 Brajesh Kumar
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of the original CodeTracker software and documentation authored by Brajesh
-Kumar (the "Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish, distribute,
-sublicense, and/or sell copies of the Software, and to permit persons to whom
-the Software is furnished to do so, subject to the following conditions:
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
@@ -20,9 +20,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-This license covers only original CodeTracker code and documentation authored
-by Brajesh Kumar. It does not grant rights to separately licensed third-party
-dependencies, framework-generated starter files, icons, fonts, logos, browser
-extensions, services, or other assets. Third-party materials remain subject to
-their own licenses and terms. Product names and trademarks, including LeetCode
-and Microsoft Edge, are not licensed by this notice.
+This notice applies only to original CodeTracker code and documentation authored
+by Brajesh Kumar. Third-party dependencies, generated starter assets, external
+services, separately distributed browser extensions, trademarks, and other
+third-party material remain subject to their respective owners' licenses and
+terms. This license does not grant rights to third-party names or marks.
