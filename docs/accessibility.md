@@ -4,14 +4,25 @@
 
 Use WCAG 2.2 Level AA as the engineering target for applicable user interface content. The repository has not undergone a documented conformance audit, so no compliance claim is made.
 
-## Current review areas
+## Current implementation improvements
 
-- Login and signup forms use input controls with IDs, but visible labels and accessible error associations need improvement.
-- The dashboard contains a data table; retain semantic table markup and meaningful headers.
-- The mobile navigation button currently has aria-controls and a static aria-expanded value, but does not toggle the menu.
-- Buttons and links need visible keyboard focus.
-- Loading and error messages should be announced without relying on color alone.
-- The current table has no explicit empty-state message.
+- Login and signup now use semantic forms, persistent labels, required controls, and inline error text announced with role=alert.
+- App exposes an initial auth-loading status.
+- The dashboard mobile menu now toggles its visibility and updates aria-expanded and its accessible name.
+- The question table has a screen-reader caption and scoped column headers.
+- Loading and empty states use status semantics; query failures use alert semantics.
+- Question records use fallbacks for missing values, and only validated HTTP(S) URLs become clickable anchors.
+- Visible focus styles were added to the primary auth actions, navigation links, and question links.
+
+## Remaining review work
+
+- Complete a keyboard-only walkthrough on all routes.
+- Review the app with a screen reader.
+- Measure actual color contrast, including text on the blue/indigo gradient.
+- Test reflow and content at 200% zoom and on narrow viewports.
+- Review focus order and touch target sizing on mobile.
+- Run automated axe or equivalent scans and manually inspect findings.
+- Record actual results in docs/templates/accessibility-audit-template.md.
 
 ## Required practices
 
@@ -22,18 +33,10 @@ Use WCAG 2.2 Level AA as the engineering target for applicable user interface co
 5. Ensure text and UI component contrast meet WCAG 2.2 AA thresholds.
 6. Do not use color as the only indication of difficulty or error state.
 7. Provide accessible names for icon-only controls.
-8. Announce asynchronous loading and failure states using suitable live-region semantics.
+8. Announce asynchronous loading and failure states with suitable live-region semantics.
 9. Preserve content under 200% zoom and narrow viewports.
 10. Respect reduced-motion preferences for non-essential animation.
 
-## Verification
-
-- Keyboard-only pass through landing, login, signup, and dashboard.
-- Screen-reader review of forms and the question table.
-- Contrast review for blue/indigo gradients and text.
-- Zoom and reflow review.
-- Automated axe or equivalent scan, followed by manual inspection.
-
 ## Evidence policy
 
-Record the tested commit, browser, assistive technology, pages, issues found, and remediation status in an accessibility audit template. An automated scan alone does not prove WCAG conformance.
+Record tested commit, browser, assistive technology, pages, issues found, and remediation status. An automated scan alone does not prove WCAG conformance.

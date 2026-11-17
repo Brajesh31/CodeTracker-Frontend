@@ -11,24 +11,27 @@
 | FR-005 | A visitor can open the login form. | Implemented | Navigate to /login |
 | FR-006 | Login submits email and password to Firebase Authentication. | Implemented | Use a synthetic Firebase test account |
 | FR-007 | App observes Firebase auth state. | Implemented | Sign in and sign out while app is open |
-| FR-008 | Dashboard route is included when a user is present. | Implemented | Inspect routes after auth settles |
-| FR-009 | Dashboard requests matching question documents from Firestore. | Implemented | Seed synthetic records and inspect query |
-| FR-010 | Question rows display title, difficulty, email, link, time, and topics. | Implemented for expected data | Verify all expected fields |
-| FR-011 | A user can sign out. | Implemented | Activate Sign out and confirm auth state |
+| FR-008 | App shows a pending state while initial auth state is unresolved. | Implemented | Reload a browser session and observe pending text |
+| FR-009 | Signed-out dashboard visits redirect to login. | Implemented | Open /dashboard in a signed-out session |
+| FR-010 | Unknown paths render a not-found experience. | Implemented | Open an unknown browser path |
+| FR-011 | Dashboard reads matching question documents from Firestore. | Implemented | Seed synthetic records and inspect query |
+| FR-012 | Question rows safely display expected fields and fallback values. | Implemented | Test missing and malformed synthetic fields |
+| FR-013 | Question links are limited to HTTP(S) URL schemes. | Implemented | Try https, http, javascript, and malformed values |
+| FR-014 | Dashboard distinguishes loading, empty, and query-error states. | Implemented | Test delayed, empty, and denied queries |
+| FR-015 | Login and signup provide labelled controls and inline generic error feedback. | Implemented | Keyboard test and simulate Firebase auth errors |
+| FR-016 | A user can sign out. | Implemented | Activate Sign out and confirm auth state |
+| FR-017 | Mobile navigation opens and closes with an accessible expanded state. | Implemented | Test button and aria-expanded at narrow viewport |
 
 ## Known gaps in current behavior
 
-- FR-012: Define a visible empty state when no question documents match. Not implemented.
-- FR-013: Validate and normalize each question document before rendering. Not implemented.
-- FR-014: Provide user-friendly inline authentication errors. Current forms use alert/logging behavior.
-- FR-015: Define an explicit unauthenticated dashboard redirect or guard. Not implemented.
-- FR-016: Provide accessible mobile navigation state. The current menu button is not wired to toggle the menu.
-- FR-017: Define a not-found route. Not implemented.
-- FR-018: Define account recovery and deletion behavior. Not implemented.
+- FR-018: Add/edit/delete question records. Not implemented.
+- FR-019: Add pagination, ordering, and search/filter controls. Not implemented.
+- FR-020: Add password recovery, verification, account deletion, and export workflows. Not implemented.
+- FR-021: Add automated component, integration, E2E, and Firebase Rules test suites. Not implemented.
 
 ## Acceptance rule
 
-Do not mark a requirement implemented because it appears in a roadmap or design. Require source evidence and a repeatable verification step. When behavior is dependent on Firebase Console configuration, identify that dependency and test it separately from the frontend.
+A requirement is implemented when source evidence exists. A verification idea is not a passed test. Firebase-dependent behavior must be tested separately in the intended Firebase development project or Emulator environment.
 
 ## Related documents
 

@@ -10,39 +10,47 @@
 
 ## leetcode/src/App.jsx
 
-**Role:** Observes Firebase Authentication state and defines public and conditional dashboard routes.
+**Role:** Observes Firebase Authentication state, displays an initial pending state, and defines public, protected, and fallback routes.
 
-**Current route map:** /, /login, /signup, and /dashboard when user state is truthy.
+**Current route map:** /, /login, /signup, protected /dashboard, and a catch-all not-found experience.
 
-**Known limitation:** No explicit auth-loading guard, unauthenticated redirect, or catch-all not-found route is present.
+**Behavior:** Signed-out direct visits to /dashboard are redirected to /login. The component unsubscribes from onAuthStateChanged on unmount.
 
 ## leetcode/src/Auth/Login.jsx
 
 **Role:** Captures email and password and calls Firebase email/password sign-in.
 
-**Current behavior:** On success, navigates to /dashboard when the current user has an email. On failure, displays an alert.
+**Current behavior:** Semantic form with required labelled fields, autocomplete hints, inline generic error messages, and navigation to /dashboard after success.
 
-**Known limitation:** Inputs are not wrapped in a semantic form with associated visible labels in the current source. Google popup handler code exists but is not rendered as a button.
+**Known limitation:** Password recovery and Google sign-in UI are not implemented.
 
 ## leetcode/src/Auth/Signup.jsx
 
 **Role:** Captures name, email, and password, creates a Firebase user, updates display name, and navigates to /.
 
-**Known limitation:** Uses alert-based feedback and does not expose a Google sign-in button, although a handler exists.
+**Current behavior:** Semantic form with required labels and inline generic error messages.
+
+**Known limitation:** No email verification, password recovery, or account deletion UX.
 
 ## leetcode/src/components/Dashboard.jsx
 
-**Role:** Shows the dashboard navigation, signed-in user's display name, external study-resource link, sign-out action, and AllQuestions component.
+**Role:** Shows the signed-in user's display name, responsive navigation disclosure, external resource link, sign-out action, and AllQuestions component.
 
-**Known limitation:** The mobile menu button is not wired to toggle menu visibility.
+**Current behavior:** Mobile menu open/closed state is controlled by React and reflected in aria-expanded and the button accessible name.
 
 ## leetcode/src/components/AllQuestions.jsx
 
-**Role:** Queries Firestore questions using uid equality and renders the result set as a table.
+**Role:** Queries Firestore questions using UID equality and renders the result set as a table.
 
 **Expected data:** uid, title, difficulty, email, link, time, and topics.
 
-**Known limitation:** The component assumes topics supports join and time supports Date conversion. There is no explicit empty state, result limit, pagination, or retry action.
+**Current behavior:** Distinguishes loading, empty, query-error, and populated states; validates external URL schemes; handles Timestamp/Date/string/number time inputs; and applies fallbacks for missing or malformed fields. Query pagination and manual retry are not implemented.
+
+## leetcode/src/components/LandingPage.jsx
+
+**Role:** Public product entry page with extension download and sign-in action.
+
+**Static asset rule:** Vite public assets are referenced from the site root, for example /extension-logo.png, not /public/extension-logo.png.
 
 ## leetcode/src/config/firebase.jsx
 

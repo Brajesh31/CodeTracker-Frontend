@@ -1,47 +1,50 @@
 # ✅ Data Validation
 
-## Current state
+## Current frontend behavior
 
-The current question-list component reads Firestore documents and renders fields directly. It assumes topics is an array and passes time to JavaScript Date. There is no shared validation or normalization module in the reviewed source.
+The dashboard normalizes display values before rendering Firestore question records:
 
-## Validation requirements for future changes
+- Title: non-empty strings are displayed; missing or invalid values use "Untitled question".
+- Difficulty: non-empty strings are displayed; missing or invalid values use "Not specified".
+- Email: string values are displayed; other types use "Not specified".
+- Link: only successfully parsed HTTP(S) URLs become clickable anchors; malformed, empty, and unsupported schemes display as unavailable.
+- Time: Firestore Timestamp values using toDate(), JavaScript Date values, and string/number date inputs are handled; invalid or unsupported values display as "Date unavailable".
+- Topics: only string entries from an array are joined; missing or malformed values display as "Not specified".
 
-| Field | Validation | Safe fallback |
-| --- | --- | --- |
-| uid | Must match the authenticated owner under Firestore Rules | Reject unauthorized record |
-| title | String, trimmed, reasonable display length | "Untitled question" only if product approves |
-| difficulty | String from an agreed vocabulary or unknown label | "Unspecified" |
-| email | Valid only if it is genuinely required by the feature | Prefer not to display |
-| link | URL parse succeeds; protocol allowlist | Render plain text or omit link |
-| time | Valid Firestore Timestamp, Date, or documented ISO value | "Date unavailable" |
-| topics | Array containing only bounded strings | Empty list |
+This client-side normalization is a rendering safeguard, not a trusted write validator or a replacement for Firestore Security Rules.
+
+## Data contract still requiring formal agreement
+
+The source-derived question fields are uid, title, difficulty, email, link, time, and topics. The repository does not include the writer that creates these documents. Agree a canonical schema with every writer, including the external extension if it writes to the same collection.
+
+## Required validation responsibilities
+
+| Layer | Responsibility |
+| --- | --- |
+| Firestore Security Rules | Enforce ownership and validate allowed fields/types for permitted operations |
+| Trusted writer | Validate data before creation or mutation |
+| Frontend normalization | Protect UI rendering from missing, malformed, or legacy values |
+| Test suite | Exercise absent, null, wrong-type, invalid-date, and unsafe-link cases |
 
 ## Link safety
 
-- Parse the candidate URL using the browser URL parser.
-- Prefer https destinations.
+- Parse candidate URLs with the browser URL parser.
+- Only allow HTTP and HTTPS schemes in the dashboard.
 - Reject javascript:, data:, file:, and other unexpected schemes.
-- Add rel="noopener noreferrer" when opening a new tab.
-- Display a safe text label and do not inject HTML from stored values.
+- Use rel="noopener noreferrer" when opening a new tab.
+- Render stored values as text; do not inject HTML.
 
 ## Timestamp safety
 
-Do not assume that every stored time is a valid JavaScript Date. Decide which formats the writer emits, normalize on ingestion, and handle invalid values without throwing. Prefer Firestore Timestamp or a documented ISO 8601 representation for future records.
+Prefer Firestore Timestamp or a documented ISO 8601 representation for future records. Current display code supports Timestamp, Date, string, and number inputs, but a canonical storage contract is still needed.
 
-## Validation location
+## Remaining work
 
-- Firebase Security Rules: enforce ownership and allowed field types for operations they support.
-- Trusted writer: validate before writing or migrating records.
-- Frontend normalization: protect rendering from old, missing, or malformed records.
-- Tests: cover null, absent, wrong-type, overly long, and adversarial values.
-
-## Rollout
-
-1. Inventory current documents using synthetic or appropriately authorized data.
-2. Agree a canonical shape with every writer.
-3. Add read compatibility for known legacy formats.
-4. Add validation to trusted write paths.
-5. Test rules and rendering against malformed data.
-6. Migrate records only with an approved backup and rollback plan.
+- Bound text lengths according to an agreed product contract.
+- Establish allowed difficulty values.
+- Decide whether per-document email is needed.
+- Add unit tests for normalization helpers.
+- Add Rules validation for actual reads and writes.
+- Plan migration compatibility before changing stored fields.
 
 Do not infer or silently delete records that fail validation.

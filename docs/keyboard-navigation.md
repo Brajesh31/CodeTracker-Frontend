@@ -6,21 +6,21 @@ Every interactive control in CodeTracker must be reachable and usable without a 
 
 - Tab moves focus through links, inputs, and buttons in a logical order.
 - Shift+Tab moves backward through the same sequence.
-- Enter activates focused links and form submission controls.
+- Enter activates links and form submission controls.
 - Space activates buttons.
 - Focus remains visible at all times.
-- No keyboard trap is introduced by modal, popup, or menu behavior.
+- No keyboard trap is introduced by a menu or dialog.
 
 ## Current routes to inspect
 
-- Landing page: all CTA and external links.
+- Landing page: download extension and sign-in links.
 - Login: email, password, and submit control.
 - Signup: name, email, password, and submit control.
-- Dashboard: menu control, external resource link, question links, and sign-out.
+- Dashboard: mobile menu disclosure, external resource link, question links, and sign-out.
 
-## Known issue
+## Implemented navigation behavior
 
-The dashboard includes a mobile menu button with a static aria-expanded value and no state-changing handler. It should either be implemented as an accessible disclosure control or removed until it has a real action.
+The dashboard mobile menu uses a controlled React state. Its button updates aria-expanded and its accessible label when opened or closed. The navigation list is hidden when the disclosure is closed.
 
 ## Manual test procedure
 
@@ -29,8 +29,9 @@ The dashboard includes a mobile menu button with a static aria-expanded value an
 3. Confirm each focused control has a visible indicator and accessible name.
 4. Submit forms using Enter.
 5. Confirm invalid input errors are discoverable and focus is not lost unexpectedly.
-6. Navigate the question table and external links.
-7. Sign out using keyboard only.
-8. Repeat at a narrow viewport and with 200% zoom.
+6. At a narrow viewport, open and close the mobile menu with Enter or Space.
+7. Navigate the question table and external links.
+8. Sign out using keyboard only.
+9. Repeat at 200% zoom.
 
-Record results in docs/templates/accessibility-audit-template.md.
+Record results in docs/templates/accessibility-audit-template.md. The presence of keyboard-friendly markup is not a completed accessibility audit.

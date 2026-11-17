@@ -6,19 +6,19 @@
 
 **Purpose:** Public entry point for the CodeTracker experience.
 
-**Observed links and behavior:** The page contains a CodeTracker identity/visual element and links to authentication and external resources, including a separately distributed browser extension. Exact text and layout should be verified against a real running browser when screenshots or a UI specification are added.
+**Observed behavior:** Presents the CodeTracker purpose, an extension download link, a sign-in action, and a concise list of current user tasks. The Edge extension is separately distributed; its source and operation are not part of this repository.
 
-**Review requirements:** Explain the product honestly, distinguish the external extension from this repository, provide descriptive links, and avoid claiming that question creation or analytics are available.
+**Review requirements:** Explain the product honestly, distinguish the external extension from this repository, use descriptive links, and avoid advertising unimplemented analytics or question-editing features.
 
 ## Login page: /login
 
 **Component:** leetcode/src/Auth/Login.jsx
 
-**Purpose:** Email/password login through Firebase Authentication.
+**Purpose:** Email/password authentication through Firebase Authentication.
 
-**Current interaction:** Local state stores email and password; the Login handler calls signInWithEmailAndPassword. On success, the component navigates to /dashboard when the current user has an email. The failure path uses alert.
+**Current interaction:** A semantic form captures email and password. Inputs have persistent labels, autocomplete hints, and required validation. Firebase errors are translated into generic inline messages. Successful authentication navigates to /dashboard.
 
-**Known gaps:** The controls need persistent labels and semantic form submission. Google sign-in handler code is not exposed as a visible button.
+**Known limitations:** Password reset and Google sign-in UI are not implemented. Manual keyboard and screen-reader verification remains necessary.
 
 ## Signup page: /signup
 
@@ -26,20 +26,26 @@
 
 **Purpose:** Create a Firebase Authentication user and set the profile display name.
 
-**Current interaction:** Captures name, email, and password; calls createUserWithEmailAndPassword and updateProfile; then navigates to /.
+**Current interaction:** A semantic form captures name, email, and password, creates the user, updates displayName, and navigates to /. Errors are shown inline without exposing provider internals.
 
-**Known gaps:** Alert-based feedback, no password-recovery flow, and no formal email-verification UX.
+**Known limitations:** No email-verification UI, password recovery, or account deletion workflow is implemented.
 
 ## Dashboard page: /dashboard
 
 **Component:** leetcode/src/components/Dashboard.jsx
 
-**Purpose:** Show the signed-in user's greeting, sign-out action, external resource link, and question list.
+**Purpose:** Show the signed-in user's greeting, navigation disclosure, sign-out action, external resource link, and question list.
 
-**Data child:** AllQuestions queries the Firestore questions collection by uid.
+**Data child:** AllQuestions queries the Firestore questions collection by UID, then renders loading, empty, error, or populated states. Malformed fields receive fallback text and non-HTTP(S) links are not made clickable.
 
-**Known gaps:** No CRUD actions, no empty state, no pagination, no explicit auth redirect, and a mobile-menu control that does not toggle the menu.
+**Known limitations:** No question CRUD actions, search, sorting, or pagination are implemented.
+
+## Not-found route: *
+
+**Component:** Inline fallback in leetcode/src/App.jsx.
+
+**Purpose:** Explain that an unknown path does not exist and provide a link back to CodeTracker.
 
 ## Page documentation policy
 
-For future pages, document purpose, route/access policy, parent/child components, data sources, user actions, loading/empty/error states, responsive behavior, keyboard behavior, analytics (if any), and tests. Keep actual screenshots separate from diagrams and only add screenshots captured from the real running application.
+For future pages, document purpose, route/access policy, parent/child components, data sources, user actions, loading/empty/error states, responsive behavior, keyboard behavior, analytics (if any), and tests. Add only screenshots captured from the real running application with synthetic data.

@@ -7,7 +7,8 @@
 | / | Public | LandingPage | Visitor |
 | /login | Public | Login | Visitor or signed-out user |
 | /signup | Public | Signup | Visitor or signed-out user |
-| /dashboard | Conditional | Dashboard | Rendered when App has a truthy user state |
+| /dashboard | Protected | Dashboard | Signed-in Firebase user |
+| * | Fallback | Not-found content | Any visitor |
 
 ## Navigation diagram
 
@@ -15,23 +16,24 @@
 flowchart TD
     Root["/ LandingPage"] --> Login["/login"]
     Root --> Signup["/signup"]
-    Login --> Dashboard["/dashboard after sign-in"]
+    Login -->|Auth succeeds| Dashboard["/dashboard"]
     Signup --> Root
-    Dashboard --> Root["/ after sign-out"]
+    Dashboard -->|Sign out| Root
+    Unknown["Unknown path"] --> NotFound["Not found"]
+    SignedOut["Signed-out user opens dashboard"] --> Login
 ~~~
 
-## Current limitations
+## Authentication and route behavior
 
-- There is no explicit catch-all route.
-- The app conditionally declares /dashboard but does not define a clear redirect for an unauthenticated direct visit.
-- Auth state initially starts as null, so the app does not distinguish unresolved auth state from signed-out state.
-- The mobile menu button in Dashboard is not wired to control menu visibility.
+- App observes Firebase Auth state and displays a pending status while the initial state is being resolved.
+- The dashboard route is protected; a signed-out visit navigates to /login.
+- Unknown paths display a not-found message and a link to return to the landing page.
+- Sign-out returns the user to the public landing route.
 
-## Navigation requirements for future work
+## Mobile navigation
 
-- Add an explicit auth-loading state before route access decisions.
-- Redirect signed-out visits to /login with a safe return path only if the product requires it.
-- Add a not-found route.
-- Keep sign-out behavior consistent with the auth-state listener.
-- Make active navigation state and mobile menu state accessible.
-- Test browser back/forward and direct refresh on every route using Hosting rewrites.
+The dashboard menu disclosure is controlled by React state. The menu button updates its accessible label and aria-expanded value. The mobile links remain inside the controlled disclosure.
+
+## Verification still required
+
+Test direct route refresh, browser back/forward, auth state restoration, signed-out dashboard redirects, and the mobile menu at narrow viewports against a running build and Firebase test session.
