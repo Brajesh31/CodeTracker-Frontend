@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../config/firebase";
@@ -140,6 +141,12 @@ const Dashboard = ({ user }) => {
       </main>
     </>
   );
+};
+
+Dashboard.propTypes = {
+  user: PropTypes.shape({
+    displayName: PropTypes.string,
+  }).isRequired,
 };
 
 export default Dashboard;

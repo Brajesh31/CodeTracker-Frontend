@@ -46,6 +46,8 @@
 
 **Current behavior:** Distinguishes loading, empty, query-error, and populated states; validates external URL schemes; handles Timestamp/Date/string/number time inputs; and applies fallbacks for missing or malformed fields. Query pagination and manual retry are not implemented.
 
+**Props contract:** Receives a Firebase Auth user object with a string uid. PropTypes validates that shape at runtime.
+
 ## leetcode/src/components/LandingPage.jsx
 
 **Role:** Public product entry page with extension download and sign-in action.

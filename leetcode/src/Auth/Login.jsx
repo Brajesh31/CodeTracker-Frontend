@@ -40,7 +40,7 @@ const Login = () => {
           CodeTracker
         </span>
         <span className="text-sm">
-          Don't have an account?{" "}
+          Do not have an account?{" "}
           <Link
             to="/signup"
             className="font-medium text-blue-600 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"

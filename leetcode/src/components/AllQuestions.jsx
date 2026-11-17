@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../config/firebase";
 
@@ -178,6 +179,12 @@ const AllQuestions = ({ user }) => {
       </table>
     </div>
   );
+};
+
+AllQuestions.propTypes = {
+  user: PropTypes.shape({
+    uid: PropTypes.string,
+  }),
 };
 
 export default AllQuestions;
