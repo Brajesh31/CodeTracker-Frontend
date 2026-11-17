@@ -17,9 +17,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-// eslint-disable-next-line react-refresh/only-export-components
 export const GoogleProvider = new GoogleAuthProvider();
-// eslint-disable-next-line react-refresh/only-export-components
 export const db = getFirestore(app);
-// eslint-disable-next-line react-refresh/only-export-components
 export const storage = getStorage(app);
