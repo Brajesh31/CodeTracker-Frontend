@@ -1,52 +1,76 @@
 # Contributing to CodeTracker
 
-Thanks for considering a contribution. This repository is a small React/Vite frontend, so focused changes with a clear user benefit are easiest to review. Read this guide, the [Code of Conduct](CODE_OF_CONDUCT.md), and relevant documentation before opening a pull request.
+CodeTracker is a React 18 + Vite frontend that uses Firebase Authentication and Cloud
+Firestore from the browser. Contributions should reflect the architecture that exists
+and should not imply server-side capabilities that are not implemented.
 
-## Before you start
+## Before starting
 
-- Search existing issues and pull requests to avoid duplicating work.
-- For a substantial feature or a change to authentication, data access, or deployment, open an issue first to agree on expected behavior.
-- Do not include real user records, personal data, Firebase service-account credentials, private keys, production configuration, or secrets in commits, screenshots, or issues.
-- Confirm that each new dependency or asset has a compatible license and identify it in the pull request.
+1. Read [README.md](README.md), [docs/architecture/README.md](docs/architecture/README.md),
+   and the relevant implementation notes.
+2. Search existing issues and pull requests before starting duplicate work.
+3. For substantial behavior changes, open an issue describing the user problem and proposal.
+4. Never include production credentials, Firebase exports, personal user records,
+   access tokens, or private keys in a contribution.
 
 ## Development setup
 
-The application is nested in leetcode/. Follow [Installation](docs/installation.md), then run commands from that directory:
+The package is inside `leetcode/`, not at the repository root.
 
-~~~sh
+```bash
+cd leetcode
 npm ci
+cp ../.env.example .env.local
+# Configure a dedicated development Firebase project.
 npm run dev
-npm run lint
-npm run build
-~~~
+```
 
-Use a development Firebase project and test accounts. Configure Firestore Security Rules before exercising database access. See [Development](docs/development.md) and [Security](SECURITY.md).
+Use synthetic data and a non-production Firebase project. The dashboard requires Firebase
+Authentication and Cloud Firestore configuration. Configure restrictive Firestore Security
+Rules separately; no rules file is currently tracked.
 
 ## Change expectations
 
-- Keep changes scoped to the issue and match the existing React/JavaScript style.
-- Prefer accessible labels, meaningful button text, keyboard-friendly controls, and clear loading/error states.
-- Keep Firebase access in the existing client configuration boundary; never add privileged credentials to browser code.
-- Treat Firestore rules as the actual access boundary. A frontend filter or hidden route does not secure records.
-- Update documentation when commands, routes, environment variables, data fields, or deployment behavior changes.
-- Do not commit generated output such as leetcode/dist/, node_modules/, local environment files, or local IDE state.
-- Avoid broad formatting changes that obscure the functional diff.
+- Preserve existing behavior unless a change intentionally updates it.
+- Keep React components focused and avoid duplicating Firebase initialization.
+- Validate Firestore fields before rendering or using array/date methods.
+- Treat browser-provided values and Firestore content as untrusted.
+- Never treat a UID filter or hidden route as authorization. Security Rules enforce access.
+- Keep VITE_ settings limited to public Firebase web-app configuration.
+- Add loading, empty, error, and invalid-data states for asynchronous UI.
+- Maintain keyboard usability, semantic HTML, labels, and visible focus.
+- Update documentation and diagrams when routes, data shape, or behavior changes.
 
-## Pull request steps
+## Checks
 
-1. Create a branch from the current main branch with a descriptive name, such as fix/dashboard-empty-state.
-2. Make the smallest coherent change and keep secrets and live user data out of the branch.
-3. From leetcode/, run npm run lint and npm run build when your change affects the app. Record commands and outcomes honestly; if a command cannot run, state why.
-4. Review git diff for accidental configuration, generated files, unrelated edits, and sensitive values.
-5. Open a pull request against main with a concise summary, motivation, implementation notes, and verification results. Link related issues.
-6. Include screenshots or a short recording for visible UI changes, using synthetic data only. Mention any Firebase console or rules changes required outside this repository.
+From `leetcode/`:
 
-A maintainer may request changes or clarification before merging. Do not squash or rewrite another contributor's branch without coordinating with them.
+```bash
+npm run lint
+npm run build
+```
 
-## Commit messages
+Repository checks:
 
-Use short, descriptive messages that say what changed, for example: docs: explain Firestore ownership model or fix: show empty question state. Keep unrelated changes in separate commits on your own branch.
+```bash
+python3 scripts/check_repository.py
+```
 
-## Reporting vulnerabilities
+Report the checks you actually ran. Do not claim a workflow, test suite, or accessibility
+audit passed unless it was executed.
 
-Do not report suspected security issues in a public issue or pull request. Follow [SECURITY.md](SECURITY.md) for private reporting instructions.
+## Pull request checklist
+
+- [ ] The problem and proposed change are explained.
+- [ ] Changes preserve unrelated source files.
+- [ ] Local lint/build results are reported accurately.
+- [ ] UI changes include genuine screenshots where practical.
+- [ ] Firebase rules, indexes, or console changes are documented where needed.
+- [ ] Documentation and diagrams match the resulting code.
+- [ ] No secrets, production data, or generated build output are committed.
+- [ ] Known limitations and follow-up work are recorded.
+
+## Review
+
+A maintainer may request changes where behavior, security, accessibility, or documentation
+is unclear. Keep commits focused and respond to review comments with evidence.
