@@ -1,0 +1,34 @@
+name: Documentation improvement
+description: Report inaccurate, missing, or unclear project documentation.
+title: "[Docs]: "
+labels:
+  - documentation
+body:
+  - type: input
+    id: document
+    attributes:
+      label: Document or section
+      placeholder: docs/architecture.md
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What is incorrect or missing?
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested correction
+    validations:
+      required: true
+  - type: checkboxes
+    id: verified
+    attributes:
+      label: Accuracy
+      options:
+        - label: I checked the current source or configuration where relevant.
+          required: true
+        - label: I did not add unverified features, metrics, screenshots, or test claims.
+          required: true
