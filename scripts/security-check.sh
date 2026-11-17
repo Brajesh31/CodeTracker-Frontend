@@ -10,11 +10,19 @@ fi
 violations=0
 while IFS= read -r file; do
   case "$file" in
-    .env.local|.env.*.local|leetcode/.env.local|leetcode/.env.*.local|*/.env.local|*/.env.*.local)
-      echo "Tracked local environment file: $file" >&2
+    .env.example)
+      ;;
+    .env|.env.*|*/.env|*/.env.*)
+      echo "Tracked environment file other than the approved example: $file" >&2
       violations=1
       ;;
   esac
+
+  # The scanner contains the detection expressions itself, so exclude it from
+  # content matching while still scanning its path for environment-file issues.
+  if [[ "$file" == "scripts/security-check.sh" ]]; then
+    continue
+  fi
 
   if [[ -f "$file" ]] && grep -Iq . "$file"; then
     if grep -nE -- '-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----|gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}' "$file" >/dev/null; then
@@ -29,4 +37,4 @@ if [[ "$violations" -ne 0 ]]; then
   exit 1
 fi
 
-echo "No tracked local environment files or high-confidence key/token markers found."
+echo "No tracked non-example environment files or high-confidence key/token markers found."
