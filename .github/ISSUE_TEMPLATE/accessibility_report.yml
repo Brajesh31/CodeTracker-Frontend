@@ -1,0 +1,59 @@
+name: Accessibility issue
+description: Report a barrier involving keyboard, screen reader, contrast, zoom, or other accessibility use.
+title: "[Accessibility]: "
+labels:
+  - accessibility
+  - bug
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected page or component
+      options:
+        - Landing page
+        - Login
+        - Signup
+        - Dashboard
+        - Question table
+        - Navigation menu
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: barrier
+    attributes:
+      label: Barrier type
+      options:
+        - Keyboard access or focus
+        - Screen reader or accessible name
+        - Form label or error message
+        - Color contrast
+        - Zoom or reflow
+        - Motion or animation
+        - Touch target
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps and impact
+      description: Explain what you attempted and how the barrier affects the task.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser, device, and assistive technology
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitized evidence
+      description: Do not include private information.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have removed personal data and credentials.
+          required: true
