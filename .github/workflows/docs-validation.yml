@@ -1,0 +1,42 @@
+name: Documentation and repository validation
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate docs, links, structure, and secret hygiene
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate documentation and SVG assets
+        run: python scripts/validate-docs.py
+
+      - name: Validate local Markdown links
+        run: python scripts/validate-links.py
+
+      - name: Validate repository structure
+        run: python scripts/check-project-structure.py
+
+      - name: Check tracked files for high-confidence secrets
+        run: bash scripts/security-check.sh
