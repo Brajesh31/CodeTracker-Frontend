@@ -10,9 +10,10 @@ tracked Firestore Security Rules, or a backend API.
 
 Do not open a public issue for an exploitable vulnerability, exposed credential,
 authorization bypass, or disclosure of user information. Contact the repository
-maintainer privately through the contact route shown on the GitHub profile. Include
-the affected route or configuration, reproducible steps, impact, and commit/version.
-Do not include tokens, passwords, service-account keys, or production records.
+maintainer privately through [GitHub @brajesh31](https://github.com/brajesh31). If GitHub
+offers private vulnerability reporting for this repository, use it. Include the affected
+commit, reproducible steps, and impact. Never include tokens, passwords, service-account
+keys, or real user records.
 
 ## Security boundaries
 
@@ -35,5 +36,5 @@ Do not include tokens, passwords, service-account keys, or production records.
 - [ ] Dependency alerts and lockfile updates are reviewed.
 
 Triage should assess confidentiality, integrity, availability, affected users, exploit
-preconditions, and whether credentials or rules need rotation. Coordinate a fix, validate
-it in an isolated project, and publish an advisory after remediation where appropriate.
+preconditions, and whether credentials or rules need rotation. Validate fixes in an
+isolated project and publish an advisory after remediation where appropriate.

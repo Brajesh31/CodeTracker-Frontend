@@ -2,21 +2,16 @@
 
 ## Where to ask
 
-- Bug reports: use GitHub Issues with a reproducible description and sanitized logs.
-- Feature requests: use GitHub Issues and explain the user problem and expected behavior.
+- Bug reports: GitHub Issues with reproducible steps and sanitized logs.
+- Feature requests: GitHub Issues with the user problem and expected behavior.
 - Security concerns: follow [SECURITY.md](SECURITY.md), not a public issue.
-- Setup questions: read the [installation guide](docs/installation/README.md),
-  [FAQ](docs/product/faq.md), and [troubleshooting guide](docs/operations/troubleshooting.md).
+- Setup questions: [Installation](docs/installation.md), [FAQ](docs/faq.md), and
+  [Troubleshooting](docs/troubleshooting.md).
 
-## Useful diagnostic information
+Include OS, browser, Node/npm versions, route, reproduction steps, expected and actual
+results, and sanitized console output. Never share ID tokens, passwords, API credentials,
+service-account files, or actual user documents.
 
-Include operating system, browser, Node/npm versions, route, reproduction steps,
-expected result, actual result, and sanitized console output. For Firebase errors,
-include the error code but never an ID token, password, API credential, service account,
-or real user document.
-
-## Scope
-
-Support covers this repository's React frontend and checked-in configuration. Third-party
-Firebase availability, the Microsoft Edge extension distribution, external study
-resources, and LeetCode services are controlled by their respective providers.
+Support covers this repository's React frontend and checked-in configuration. Firebase
+availability, the Edge extension distribution, external study resources, and LeetCode
+services are controlled by their providers. No response-time guarantee is offered.

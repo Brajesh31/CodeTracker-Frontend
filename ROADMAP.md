@@ -1,7 +1,6 @@
 # Roadmap
 
-This roadmap separates verified current behavior from proposed future work. Priority is
-based on user impact and security.
+This roadmap separates verified behavior from proposed future work.
 
 ## P0: production safety and deploy reliability
 
@@ -34,7 +33,7 @@ read or modify another user's documents, and the production workflow builds the 
 ## P3: product capabilities
 
 - [ ] Define a versioned question-record contract shared with the companion extension.
-- [ ] Add create/edit/delete only after the data model and Security Rules are reviewed.
+- [ ] Add create/edit/delete only after data model and Security Rules review.
 - [ ] Add search, filtering, sorting, pagination, and progress summaries.
 - [ ] Add account recovery and expose Google sign-in after end-to-end testing.
 - [ ] Evaluate offline and performance requirements before adding caching.

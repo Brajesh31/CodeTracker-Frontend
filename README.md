@@ -8,7 +8,7 @@
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
 [![Firebase](https://img.shields.io/badge/Firebase-Client_SDK-FFCA28?logo=firebase&logoColor=black)](https://firebase.google.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-2ea44f.svg)](LICENSE)
-[![Documentation](https://img.shields.io/badge/Documentation-Project%20Guides-0A7EA4)](docs/README.md)
+[![Docs](https://img.shields.io/badge/Documentation-Project%20Guides-0A7EA4)](docs/README.md)
 
 **CodeTracker** is a React single-page frontend for signing in and viewing coding-question
 records associated with the current Firebase user. It uses Firebase Authentication and
@@ -21,7 +21,7 @@ reads question records from Cloud Firestore.
 ## ✨ Implemented capabilities
 
 - 🔐 Email/password registration and login through Firebase Authentication.
-- 👤 Authentication-state subscription and a conditional dashboard route.
+- 👤 Authentication-state subscription and conditional dashboard route.
 - 📚 Read-only Firestore query against the `questions` collection, filtered by the
   signed-in user's UID.
 - 📊 Table view for title, difficulty, email, link, time, and topics.
@@ -31,15 +31,14 @@ reads question records from Cloud Firestore.
 > **Honest project status:** This repository is a frontend, not a complete coding platform.
 > The checked-in dashboard reads records but does not create, edit, or delete questions.
 > The linked browser extension source is not included. No application server, REST API,
-> Firestore Security Rules, automated component test suite, or production data migration
-> system is tracked here. Google sign-in handlers exist in source but are not exposed as
-> buttons in the current UI.
+> Firestore Security Rules, automated component test suite, or data migration system is
+> tracked here. Google sign-in handlers exist in source but are not exposed as UI buttons.
 
 ## 🖼️ Architecture preview
 
 ![CodeTracker system context](docs/architecture/diagrams/system-context.svg)
 
-The illustration is an architecture diagram, not a screenshot of a running application.
+This is an architecture illustration, not a screenshot of the running application.
 See the [architecture diagrams index](docs/architecture/README.md) for component,
 data-flow, sequence, deployment, state, and UML views.
 
@@ -61,7 +60,7 @@ rules file is currently included in this repository.
 | Area | Technology |
 | --- | --- |
 | UI | React 18 |
-| Build and dev server | Vite 5 |
+| Build/dev server | Vite 5 |
 | Routing | React Router 6 |
 | Styling | Tailwind CSS 3 |
 | Authentication | Firebase Authentication |
@@ -120,12 +119,12 @@ Copy the root example file into the Vite app directory:
 cp ../.env.example .env.local
 ```
 
-Fill in the `VITE_FIREBASE_*` values for a dedicated development Firebase Web App.
+Fill in the `VITE_FIREBASE_*` values for a development Firebase Web App.
 Restart Vite after editing environment values.
 
-⚠️ **Vite exposes variables with the `VITE_` prefix in the browser bundle.** They are
-public client configuration, not secrets. Never place service-account credentials,
-private keys, or admin tokens in `.env.local`.
+⚠️ **Vite exposes variables with the `VITE_` prefix in the browser bundle.**
+They are public client configuration, not secrets. Never place service-account
+credentials, private keys, or admin tokens in `.env.local`.
 
 ### 3. Run locally
 
@@ -141,8 +140,7 @@ npm run build
 npm run preview
 ```
 
-Run application scripts from `leetcode/`, because the package and lockfile are nested
-there.
+Run application scripts from `leetcode/`, because the package and lockfile are nested there.
 
 ## 🧪 Current verification and gaps
 
@@ -164,7 +162,7 @@ there.
 - Validate external links and Firestore document fields before rendering them.
 - Use a development Firebase project for previews and manual testing.
 
-Read the [Security Policy](SECURITY.md) and the [security documentation](docs/security/README.md).
+Read the [Security Policy](SECURITY.md) and [security documentation](docs/security/README.md).
 
 ## 📚 Documentation
 
@@ -191,7 +189,7 @@ establish component-level tests. See [ROADMAP.md](ROADMAP.md).
 
 ## 🤝 Contributing
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md), follow the pull request checklist, and report
+Read [CONTRIBUTING.md](CONTRIBUTING.md), follow its pull request checklist, and report
 the verification steps you actually ran.
 
 ## 📄 License
@@ -202,5 +200,3 @@ services, browser extensions, logos and trademarks retain their respective terms
 CodeTracker is not affiliated with or endorsed by LeetCode or Microsoft.
 
 <div align="center">Made with ❤️ by **Brajesh Kumar**</div>
-
-Last updated: 2026-11-17 22:08 UTC

@@ -25,9 +25,8 @@ cp ../.env.example .env.local
 npm run dev
 ```
 
-Use synthetic data and a non-production Firebase project. The dashboard requires Firebase
-Authentication and Cloud Firestore configuration. Configure restrictive Firestore Security
-Rules separately; no rules file is currently tracked.
+Use synthetic data and a non-production Firebase project. Configure restrictive Firestore
+Security Rules separately; no rules file is currently tracked.
 
 ## Change expectations
 
@@ -69,8 +68,3 @@ audit passed unless it was executed.
 - [ ] Documentation and diagrams match the resulting code.
 - [ ] No secrets, production data, or generated build output are committed.
 - [ ] Known limitations and follow-up work are recorded.
-
-## Review
-
-A maintainer may request changes where behavior, security, accessibility, or documentation
-is unclear. Keep commits focused and respond to review comments with evidence.
