@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" role="img" aria-labelledby="title desc">
+  <title id="title">CodeTracker logo</title>
+  <desc id="desc">A rounded blue and indigo application tile containing a checklist card and a progress path.</desc>
+  <defs>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#bfdbfe"/>
+      <stop offset="1" stop-color="#e0e7ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#172554" flood-opacity=".22"/>
+    </filter>
+  </defs>
+  <rect x="20" y="20" width="280" height="280" rx="70" fill="url(#brand)"/>
+  <g filter="url(#shadow)">
+    <rect x="77" y="62" width="166" height="196" rx="22" fill="#fff"/>
+    <rect x="102" y="88" width="116" height="13" rx="6.5" fill="#dbeafe"/>
+    <rect x="102" y="111" width="82" height="8" rx="4" fill="#e5e7eb"/>
+    <g fill="none" stroke="#2563eb" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m104 151 8 8 15-18"/>
+      <path d="m104 194 8 8 15-18"/>
+      <path d="m104 237 8 8 15-18"/>
+    </g>
+    <g fill="#64748b">
+      <rect x="142" y="148" width="73" height="7" rx="3.5"/>
+      <rect x="142" y="160" width="54" height="6" rx="3"/>
+      <rect x="142" y="191" width="73" height="7" rx="3.5"/>
+      <rect x="142" y="203" width="61" height="6" rx="3"/>
+      <rect x="142" y="234" width="73" height="7" rx="3.5"/>
+    </g>
+  </g>
+  <circle cx="240" cy="80" r="22" fill="#93c5fd" stroke="#fff" stroke-width="6"/>
+  <path d="m231 80 6 6 12-14" fill="none" stroke="#1e40af" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
