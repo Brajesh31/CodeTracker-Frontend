@@ -45,7 +45,7 @@ jobs:
 
       - name: Upload production bundle
         if: success()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: codetracker-frontend-dist
           path: leetcode/dist/
