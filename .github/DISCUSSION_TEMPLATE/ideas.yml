@@ -1,0 +1,22 @@
+title: "💡 Idea: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share a specific problem or opportunity. Ideas are proposals, not commitments to implement.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints and trade-offs
