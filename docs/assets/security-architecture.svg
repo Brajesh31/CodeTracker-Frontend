@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="540" viewBox="0 0 1200 540" role="img" aria-labelledby="title desc">
+  <title id="title">CodeTracker security boundaries</title>
+  <desc id="desc">Untrusted browser contains React and public Firebase config, requests are validated by Firebase Authentication and Firestore Security Rules, while deployment secret stays in trusted GitHub Actions.</desc>
+  <defs><linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#4f46e5"/></linearGradient><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 9 3 0 6Z" fill="#64748b"/></marker><style>.title{font:700 25px Inter,Arial,sans-serif;fill:#0f172a}.t{font:700 18px Inter,Arial,sans-serif;fill:#0f172a}.s{font:15px Inter,Arial,sans-serif;fill:#475569}.a{stroke:#64748b;stroke-width:3;fill:none;marker-end:url(#arr)}</style></defs>
+  <rect width="1200" height="540" rx="24" fill="#f8fafc"/>
+  <text x="50" y="55" class="title">Security and trust boundaries</text>
+  <rect x="45" y="100" width="350" height="335" rx="22" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+  <text x="75" y="140" class="t">Untrusted browser</text>
+  <rect x="85" y="175" width="270" height="75" rx="14" fill="url(#blue)"/>
+  <text x="220" y="205" text-anchor="middle" fill="#fff" class="t">React UI</text><text x="220" y="229" text-anchor="middle" fill="#dbeafe" class="s">User controlled client</text>
+  <rect x="85" y="275" width="270" height="75" rx="14" fill="#fff" stroke="#60a5fa" stroke-width="2"/>
+  <text x="220" y="305" text-anchor="middle" class="t">VITE_FIREBASE_*</text><text x="220" y="329" text-anchor="middle" class="s">Public configuration only</text>
+  <rect x="455" y="100" width="330" height="335" rx="22" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/>
+  <text x="485" y="140" class="t">Firebase project</text>
+  <rect x="500" y="175" width="240" height="75" rx="14" fill="#fff" stroke="#22c55e" stroke-width="2"/>
+  <text x="620" y="205" text-anchor="middle" class="t">Authentication</text><text x="620" y="229" text-anchor="middle" class="s">Identity</text>
+  <rect x="500" y="275" width="240" height="75" rx="14" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="620" y="305" text-anchor="middle" class="t">Firestore Rules</text><text x="620" y="329" text-anchor="middle" class="s">Owner authorization</text>
+  <path d="M395 240h60" class="a"/><path d="M785 315h55" class="a"/>
+  <rect x="845" y="235" width="300" height="105" rx="15" fill="#fff" stroke="#22c55e" stroke-width="2"/>
+  <text x="995" y="275" text-anchor="middle" class="t">Cloud Firestore</text><text x="995" y="305" text-anchor="middle" class="s">Question documents</text>
+  <rect x="455" y="465" width="330" height="52" rx="12" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <text x="620" y="497" text-anchor="middle" class="t">Never place service keys in browser</text>
+  <rect x="845" y="100" width="300" height="90" rx="15" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="995" y="137" text-anchor="middle" class="t">Trusted GitHub Actions</text><text x="995" y="164" text-anchor="middle" class="s">Protected deploy secret</text>
+  <path d="M995 190v45" class="a"/>
+  <text x="600" y="525" class="s" text-anchor="middle">Firebase Rules are required; this repository does not currently include a Rules file or emulator tests.</text>
+</svg>
