@@ -1,29 +1,43 @@
 # Roadmap
 
-This is a set of possible next steps based on the current checked-in frontend. Items are proposals, not release promises or scheduled commitments. Priorities may change with maintainer and contributor feedback.
+This roadmap separates verified current behavior from proposed future work. Priority is
+based on user impact and security.
 
-## Near-term foundations
+## P0: production safety and deploy reliability
 
-- Add automated checks that install dependencies in leetcode/, then run lint and production build.
-- Correct the Firebase Hosting GitHub Actions working directory, dependency installation, and Firebase configuration path; validate preview and production deploys in a development project.
-- Add and review Firestore Security Rules with the Firebase Emulator, including checks that a user can only read and write their own records.
-- Add empty, loading, and recoverable error states to the dashboard and authentication flows.
-- Explain which repository contains the companion browser extension source if that source becomes available.
+- [ ] Add and review Firestore Security Rules enforcing per-user ownership.
+- [ ] Add Firebase Emulator tests for allowed and denied reads/writes.
+- [ ] Repair GitHub Actions to install dependencies and build from leetcode/.
+- [ ] Verify Firebase Hosting uses leetcode/firebase.json and publishes leetcode/dist/.
+- [ ] Scope deployment credentials to least privilege and protected environments.
 
-## Product improvements
+**Acceptance:** unauthenticated users cannot read private questions, one user cannot
+read or modify another user's documents, and the production workflow builds the nested app.
 
-- Provide a supported workflow for adding, editing, and deleting a tracked question, with server-enforced ownership.
-- Validate Firestore data before rendering, including missing fields, malformed links, and non-array topic values.
-- Add search, filtering, sorting, pagination, and accessible table behavior as the dataset grows.
-- Clarify supported sign-in providers and either expose or remove the unused Google sign-in handlers.
-- Add account recovery, form validation, and clear authentication feedback.
+## P1: application correctness
 
-## Longer-term considerations
+- [ ] Validate Firestore fields, including topics arrays, timestamps, and link protocols.
+- [ ] Add empty, retry, and recoverable error states.
+- [ ] Implement protected-route redirects and a useful not-found route.
+- [ ] Make the mobile navigation control functional or remove it.
+- [ ] Fix Vite public asset path usage in the landing page.
+- [ ] Add accessible labels, autocomplete hints, and visible form validation.
 
-- Define data retention, account deletion, and privacy expectations before collecting more user information.
-- Evaluate automated accessibility and security-rule coverage.
-- Publish versioned releases and maintain this changelog if a release process is introduced.
+## P2: test and maintenance quality
 
-## Suggesting work
+- [ ] Add unit/component tests for auth state, forms, dashboard, and question list.
+- [ ] Add a browser smoke test with Firebase Emulator or isolated test project.
+- [ ] Add dependency update review and vulnerability scanning.
+- [ ] Add build, lint, docs-link, and tracked-tree checks to CI.
+- [ ] Define supported Node/npm versions and an update cadence.
 
-Open an issue with the user problem, proposed behavior, and relevant constraints. Security-rule and data-model changes should describe migration and compatibility implications. See [Contributing](CONTRIBUTING.md).
+## P3: product capabilities
+
+- [ ] Define a versioned question-record contract shared with the companion extension.
+- [ ] Add create/edit/delete only after the data model and Security Rules are reviewed.
+- [ ] Add search, filtering, sorting, pagination, and progress summaries.
+- [ ] Add account recovery and expose Google sign-in after end-to-end testing.
+- [ ] Evaluate offline and performance requirements before adding caching.
+
+A backend API, social features, leaderboards, payments, analytics, or mobile apps are not
+assumed. Add them only when there is a clear product requirement and reviewed architecture.
