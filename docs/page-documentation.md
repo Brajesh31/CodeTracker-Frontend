@@ -48,4 +48,4 @@
 
 ## Page documentation policy
 
-For future pages, document purpose, route/access policy, parent/child components, data sources, user actions, loading/empty/error states, responsive behavior, keyboard behavior, analytics (if any), and tests. Add only screenshots captured from the real running application with synthetic data.
+For future pages, record purpose, access policy, component relationships, data sources, user actions, loading and error states, responsive behavior, keyboard support, and verification. Add only screenshots captured from the real application with synthetic data.
