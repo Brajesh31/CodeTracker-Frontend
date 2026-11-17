@@ -1,9 +1,9 @@
 # Tracked Project Structure
 
-This file is generated from the Git tree snapshot during repository enhancement. It lists
-tracked files, not local untracked files, dependencies, build output, or empty directories.
+Generated from the Git tree for this branch. Only tracked files are listed, not local
+untracked files, dependencies, build output, or empty directories.
 
-Regenerate using `python3 scripts/generate_project_structure.py --write`.
+Regenerate after changes with `python3 scripts/generate_project_structure.py --write`.
 
 - .editorconfig
 - .env.example
@@ -29,11 +29,13 @@ Regenerate using `python3 scripts/generate_project_structure.py --write`.
 - SUPPORT.md
 - docs/api.md
 - docs/architecture.md
+- docs/architecture/diagrams/system-context.svg
 - docs/database.md
 - docs/deployment.md
 - docs/development.md
 - docs/faq.md
 - docs/installation.md
+- docs/project-structure.md
 - docs/troubleshooting.md
 - leetcode/.eslintrc.cjs
 - leetcode/.firebase/hosting.ZGlzdA.cache
