@@ -1,21 +1,24 @@
-# Architecture
+# 🏛️ Architecture
 
 ## At a glance
 
-CodeTracker is a browser-only React single-page application. Vite serves it locally and builds static files. Firebase Authentication supplies the current user identity; the Firebase JavaScript SDK reads Cloud Firestore directly from the browser. Firebase Hosting is configured to serve the Vite build and route paths to the SPA entry point.
+CodeTracker is a browser-only React single-page application. Vite serves it locally and builds static files. Firebase Authentication supplies the current user identity; the Firebase JavaScript SDK reads Cloud Firestore directly from the browser. Firebase Hosting serves the Vite build and rewrites browser paths to the SPA entry point.
 
-~~~text
-Browser
-  ├── React UI + React Router
-  ├── Firebase Authentication client ── identity / auth state
-  └── Cloud Firestore client ── questions query
-          │
-          └── Cloud Firestore Security Rules enforce access
+![Architecture overview](assets/architecture-overview.svg)
 
-Vite source (leetcode/) ── build ──> leetcode/dist/ ──> Firebase Hosting
+~~~mermaid
+flowchart LR
+    Browser[Browser] --> React[React UI and Router]
+    React --> AuthSDK[Firebase Authentication SDK]
+    React --> FirestoreSDK[Cloud Firestore SDK]
+    AuthSDK <--> Auth[Firebase Authentication]
+    FirestoreSDK --> Rules[Firestore Security Rules]
+    Rules --> DB[(Cloud Firestore)]
+    Vite[Vite source in leetcode/] --> Build[leetcode/dist/]
+    Build --> Hosting[Firebase Hosting]
 ~~~
 
-Security Rules are an essential external configuration. No Firestore rules file is tracked here. The app's client-side query filter does not enforce authorization.
+Security Rules are an essential external configuration. No Firestore Rules file is tracked here. The app's client-side query filter does not enforce authorization.
 
 ## Source boundaries
 
@@ -41,7 +44,9 @@ There is no application server or REST/GraphQL API in the tracked app. The compa
 
 ## Deployment flow
 
-The intended static build is created from leetcode/ with npm run build, producing leetcode/dist/. Firebase Hosting uses leetcode/firebase.json. The current repository GitHub workflows invoke npm at the repository root and do not configure the nested app directory, so their build/deployment setup needs correction before it can be relied on. See [Deployment](deployment.md).
+The npm package, npm lockfile, and Firebase Hosting configuration live in leetcode/. GitHub workflows now set their working directory to that app folder, run npm ci, lint and build, and pass the nested configuration location to the Firebase Hosting action. The production workflow deploys from main; the preview workflow is manually dispatched so deployment credentials are not exposed to untrusted pull requests.
+
+The workflow files are configuration, not proof of a successful deployment. Check the first actual CI and Hosting run before treating the pipeline as verified. See [Deployment](deployment.md) and [CI/CD](ci-cd.md).
 
 ## Known design limitations
 
@@ -50,3 +55,4 @@ The intended static build is created from leetcode/ with npm run build, producin
 - Firebase client configuration is public after bundling; backend rules provide access control.
 - A missing or malformed topics field can cause rendering to fail because the UI calls join without validating the value.
 - The app routes and document schema are inferred from current source, not a versioned API contract.
+- No unit, integration, E2E, or Firebase Emulator test suite is currently declared by the frontend package.
