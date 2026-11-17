@@ -1,22 +1,39 @@
 # Security Policy
 
-## Supported versions
+## Supported project surface
 
-Security fixes are currently considered for the latest version on the main branch. No release or long-term support schedule has been published.
+This repository contains a browser-based React application and Firebase client SDK
+integration. It does not contain an application server, privileged Firebase Admin SDK,
+tracked Firestore Security Rules, or a backend API.
 
 ## Reporting a vulnerability
 
-Please report suspected vulnerabilities privately to the maintainer through [GitHub @brajesh31](https://github.com/brajesh31). If GitHub offers a private vulnerability reporting or security advisory option for this repository, use it. Otherwise contact the maintainer through the account's available private contact method. Do not open a public issue or pull request with exploit details, private data, or credentials.
+Do not open a public issue for an exploitable vulnerability, exposed credential,
+authorization bypass, or disclosure of user information. Contact the repository
+maintainer privately through the contact route shown on the GitHub profile. Include
+the affected route or configuration, reproducible steps, impact, and commit/version.
+Do not include tokens, passwords, service-account keys, or production records.
 
-Include the affected commit or deployment, steps to reproduce, expected and actual behavior, and potential impact. Use synthetic accounts and data. The maintainer will acknowledge a report when practical, investigate it, and coordinate a fix and disclosure timeline with the reporter. Please allow a reasonable period for remediation before public disclosure.
+## Security boundaries
 
-## Application security notes
+- The browser bundle is public. All VITE_* values are visible to users.
+- Firebase Authentication identifies a user; Firestore Security Rules must authorize
+  every read and write.
+- The query filter where("uid", "==", user.uid) is not an access-control boundary.
+- Never bundle Firebase Admin credentials or private service-account keys in this app.
+- External links, Firestore records, and extension data must be treated as untrusted.
+- Avoid logging personal information, tokens, or complete user documents.
 
-- The app runs Firebase client SDKs in the browser. Values prefixed with VITE_ are compiled into client code and must be treated as public configuration, not secrets.
-- Firebase web configuration does not replace authorization. Enforce user ownership and permitted operations in Cloud Firestore Security Rules.
-- This repository contains no Firestore rules or Firebase Storage rules. The Firebase project owner must configure and test restrictive rules before storing real user information.
-- The dashboard's uid query is not an authorization boundary. Anyone can modify browser code and issue direct Firebase requests; rules must reject unauthorized reads and writes.
-- Do not put service-account JSON, admin SDK credentials, private keys, passwords, or production data in the frontend, .env.example, commits, or issue attachments.
-- The GitHub deployment workflow references repository secrets. Keep the deployment service account in GitHub Actions secrets and grant it only the permissions needed for Hosting.
+## Production security checklist
 
-For safe configuration and official Firebase guidance, see [Database](docs/database.md), [Deployment](docs/deployment.md), [Firebase Security Rules and Authentication](https://firebase.google.com/docs/rules/rules-and-auth), and [Firestore Security Rules conditions](https://firebase.google.com/docs/firestore/security/rules-conditions).
+- [ ] Firestore rules enforce authenticated ownership for reads and writes.
+- [ ] Rules are tested with Firebase Emulator or an isolated test project.
+- [ ] Authentication authorized domains are restricted to known environments.
+- [ ] GitHub deployment secrets are scoped and least-privileged.
+- [ ] No privileged credential is bundled in Vite assets.
+- [ ] User data is not exposed in logs, screenshots, issues, or build artifacts.
+- [ ] Dependency alerts and lockfile updates are reviewed.
+
+Triage should assess confidentiality, integrity, availability, affected users, exploit
+preconditions, and whether credentials or rules need rotation. Coordinate a fix, validate
+it in an isolated project, and publish an advisory after remediation where appropriate.
