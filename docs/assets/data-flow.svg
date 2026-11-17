@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="470" viewBox="0 0 1200 470" role="img" aria-labelledby="title desc">
+  <title id="title">CodeTracker Firestore data flow</title>
+  <desc id="desc">Authenticated user is passed from dashboard to question component, which queries Firestore by UID; Security Rules permit or deny access before records render.</desc>
+  <defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#4f46e5"/></linearGradient><marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 9 3 0 6Z" fill="#64748b"/></marker><style>.n{fill:#fff;stroke:#94a3b8;stroke-width:2}.t{font:700 19px Inter,Arial,sans-serif;fill:#0f172a}.s{font:15px Inter,Arial,sans-serif;fill:#475569}.a{stroke:#64748b;stroke-width:3;fill:none;marker-end:url(#m)}</style></defs>
+  <rect width="1200" height="470" rx="26" fill="#f8fafc"/>
+  <text x="55" y="58" font-family="Inter,Arial,sans-serif" font-size="27" font-weight="700" fill="#0f172a">Data request and trust boundary</text>
+  <rect x="50" y="150" width="190" height="110" rx="16" class="n"/><text x="145" y="193" class="t" text-anchor="middle">Dashboard</text><text x="145" y="221" class="s" text-anchor="middle">Passes current user</text>
+  <rect x="290" y="150" width="205" height="110" rx="16" class="n"/><text x="392" y="193" class="t" text-anchor="middle">AllQuestions</text><text x="392" y="221" class="s" text-anchor="middle">Builds UID query</text>
+  <rect x="545" y="150" width="205" height="110" rx="16" fill="url(#b)"/><text x="647" y="193" fill="#fff" class="t" text-anchor="middle">Firestore SDK</text><text x="647" y="221" fill="#dbeafe" class="s" text-anchor="middle">Sends authenticated read</text>
+  <rect x="800" y="150" width="170" height="110" rx="16" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/><text x="885" y="193" class="t" text-anchor="middle">Rules</text><text x="885" y="221" class="s" text-anchor="middle">Allow or deny</text>
+  <rect x="1020" y="90" width="145" height="95" rx="16" class="n"/><text x="1092" y="127" class="t" text-anchor="middle">Documents</text><text x="1092" y="153" class="s" text-anchor="middle">questions</text>
+  <rect x="1020" y="280" width="145" height="95" rx="16" class="n"/><text x="1092" y="317" class="t" text-anchor="middle">Denied</text><text x="1092" y="343" class="s" text-anchor="middle">error state</text>
+  <path d="M240 205h50M495 205h50M750 205h50M970 182l50-45" class="a"/>
+  <path d="M970 225l50 100" class="a"/>
+  <path d="M1092 185v95" stroke="#64748b" stroke-width="2" stroke-dasharray="6 6" fill="none"/>
+  <text x="600" y="420" class="s" text-anchor="middle">Client-side UID filtering is a query condition, not authorization. Rules must enforce ownership.</text>
+</svg>
