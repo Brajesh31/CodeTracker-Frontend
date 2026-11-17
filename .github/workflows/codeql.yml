@@ -4,9 +4,21 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "leetcode/**/*.js"
+      - "leetcode/**/*.jsx"
+      - "leetcode/**/*.ts"
+      - "leetcode/**/*.tsx"
+      - ".github/workflows/codeql.yml"
   pull_request:
     branches:
       - main
+    paths:
+      - "leetcode/**/*.js"
+      - "leetcode/**/*.jsx"
+      - "leetcode/**/*.ts"
+      - "leetcode/**/*.tsx"
+      - ".github/workflows/codeql.yml"
   schedule:
     - cron: "23 4 * * 1"
   workflow_dispatch:
