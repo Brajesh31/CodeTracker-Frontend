@@ -1,0 +1,57 @@
+name: Feature request
+description: Propose a user-facing or engineering improvement.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: What user need or engineering problem should be solved?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Explain the behavior, route, or workflow you want.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Provide observable outcomes that can be tested.
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Likely impact area
+      multiple: true
+      options:
+        - React UI
+        - Firebase Authentication
+        - Firestore data contract
+        - Security and privacy
+        - Accessibility
+        - Performance
+        - CI/CD and deployment
+        - Documentation
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Review considerations
+      options:
+        - label: I have considered security and privacy implications.
+        - label: I have considered accessibility and responsive behavior.
+        - label: I have not included credentials or real user data.
+          required: true
