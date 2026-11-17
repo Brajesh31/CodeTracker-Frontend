@@ -1,0 +1,47 @@
+name: Performance issue
+description: Report slow loading, expensive data reads, layout jank, or build performance problems.
+title: "[Performance]: "
+labels:
+  - performance
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Performance problem
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Initial app load
+        - Login or signup
+        - Dashboard query
+        - Large question list
+        - Responsive UI
+        - npm install or build
+        - GitHub Actions
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: measurement
+    attributes:
+      label: Measurement and evidence
+      description: Include reproducible measurements, environment, and sanitized screenshots or traces.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Confirmation
+      options:
+        - label: Evidence does not contain credentials or private user records.
+          required: true
