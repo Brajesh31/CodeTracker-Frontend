@@ -1,0 +1,77 @@
+name: Bug report
+description: Report a reproducible problem in the CodeTracker frontend or repository.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use synthetic data and sanitized logs only. Never include passwords, access tokens, Firebase service credentials, or real user records.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Describe the observed problem and user impact.
+      placeholder: What is broken?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Provide a minimal, repeatable sequence.
+      placeholder: |
+        1. Open...
+        2. Navigate to...
+        3. Activate...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Landing page
+        - Login or signup
+        - Dashboard
+        - Firestore data display
+        - Routing
+        - Firebase Hosting or CI
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: e.g. Chrome 130 on Windows 11
+  - type: input
+    id: commit
+    attributes:
+      label: Commit SHA or release
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized logs or screenshots
+      description: Remove personal data, tokens, and credentials before attaching.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety checks
+      options:
+        - label: I have removed secrets and personal user data from this report.
+          required: true
