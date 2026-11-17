@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">CodeTracker deployment flow</title>
+  <desc id="desc">GitHub main branch commit triggers checkout, Node setup, npm install and lint/build in leetcode, followed by Firebase Hosting deployment and smoke testing.</desc>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#4f46e5"/></linearGradient><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 9 3 0 6Z" fill="#64748b"/></marker><style>.box{fill:#fff;stroke:#93c5fd;stroke-width:2}.txt{font:700 18px Inter,Arial,sans-serif;fill:#0f172a}.sub{font:15px Inter,Arial,sans-serif;fill:#475569}.arrow{stroke:#64748b;stroke-width:3;fill:none;marker-end:url(#a)}</style></defs>
+  <rect width="1200" height="430" rx="24" fill="#f8fafc"/>
+  <text x="50" y="58" font-family="Inter,Arial,sans-serif" font-size="27" font-weight="700" fill="#0f172a">Build and deploy pipeline</text>
+  <g>
+    <rect x="45" y="155" width="155" height="100" rx="15" class="box"/><text x="122" y="194" class="txt" text-anchor="middle">GitHub</text><text x="122" y="222" class="sub" text-anchor="middle">main commit</text>
+    <rect x="240" y="155" width="145" height="100" rx="15" class="box"/><text x="312" y="194" class="txt" text-anchor="middle">Checkout</text><text x="312" y="222" class="sub" text-anchor="middle">Source</text>
+    <rect x="425" y="155" width="145" height="100" rx="15" class="box"/><text x="497" y="194" class="txt" text-anchor="middle">Node setup</text><text x="497" y="222" class="sub" text-anchor="middle">Node LTS</text>
+    <rect x="610" y="155" width="180" height="100" rx="15" fill="url(#g)"/><text x="700" y="194" fill="#fff" class="txt" text-anchor="middle">npm ci + checks</text><text x="700" y="222" fill="#dbeafe" class="sub" text-anchor="middle">Working dir: leetcode/</text>
+    <rect x="830" y="155" width="160" height="100" rx="15" class="box"/><text x="910" y="194" class="txt" text-anchor="middle">Vite build</text><text x="910" y="222" class="sub" text-anchor="middle">dist/</text>
+    <rect x="1030" y="155" width="145" height="100" rx="15" class="box"/><text x="1102" y="194" class="txt" text-anchor="middle">Hosting</text><text x="1102" y="222" class="sub" text-anchor="middle">Deploy</text>
+  </g>
+  <path d="M200 205h40M385 205h40M570 205h40M790 205h40M990 205h40" class="arrow"/>
+  <rect x="425" y="300" width="365" height="70" rx="14" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="607" y="328" class="txt" text-anchor="middle">Post-deployment smoke test</text><text x="607" y="351" class="sub" text-anchor="middle">Routes • Auth • Firestore access</text>
+  <path d="M1102 255v80H790" class="arrow"/>
+  <text x="607" y="405" class="sub" text-anchor="middle">Deployment secrets are available only to trusted protected-branch workflows.</text>
+</svg>
