@@ -1,18 +1,22 @@
 # Support
 
-## Get help
+## Where to ask
 
-Start with the project documentation:
+- Bug reports: use GitHub Issues with a reproducible description and sanitized logs.
+- Feature requests: use GitHub Issues and explain the user problem and expected behavior.
+- Security concerns: follow [SECURITY.md](SECURITY.md), not a public issue.
+- Setup questions: read the [installation guide](docs/installation/README.md),
+  [FAQ](docs/product/faq.md), and [troubleshooting guide](docs/operations/troubleshooting.md).
 
-- [Installation](docs/installation.md) for Node/npm setup and Firebase client configuration.
-- [Troubleshooting](docs/troubleshooting.md) for common development, authentication, and Hosting issues.
-- [FAQ](docs/faq.md) for current feature boundaries and common questions.
-- [Security policy](SECURITY.md) for private vulnerability reports.
+## Useful diagnostic information
 
-For a reproducible bug or feature proposal, search the repository's existing GitHub issues and open a new issue at [Brajesh31/CodeTracker-Frontend](https://github.com/Brajesh31/CodeTracker-Frontend/issues). Include the browser and Node/npm versions, the command or route involved, the observed result, and steps to reproduce. Remove access tokens, email addresses, user records, and other private data from logs and screenshots.
+Include operating system, browser, Node/npm versions, route, reproduction steps,
+expected result, actual result, and sanitized console output. For Firebase errors,
+include the error code but never an ID token, password, API credential, service account,
+or real user document.
 
-For general questions that do not include sensitive information, use GitHub discussions if enabled, or a relevant issue. This is a volunteer-maintained project; no response-time guarantee or paid support channel is offered.
+## Scope
 
-## Firebase account and deployment help
-
-The maintainer of this source repository may not control your Firebase project, Microsoft Edge extension listing, external study-resource site, or account. For access and billing issues, contact the owner of the relevant service. Do not post Firebase credentials or user data in public support channels.
+Support covers this repository's React frontend and checked-in configuration. Third-party
+Firebase availability, the Microsoft Edge extension distribution, external study
+resources, and LeetCode services are controlled by their respective providers.
